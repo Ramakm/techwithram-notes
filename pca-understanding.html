@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCA Understanding · RK Notes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234f46e5'/><text x='16' y='22' text-anchor='middle' font-family='system-ui,sans-serif' font-size='13' font-weight='800' fill='white'>RK</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-link" href="index.html">
+      <img src="Ram.png" alt="Ramakrushna" class="logo-avatar" />
+      <span class="logo-text">RK <span>notes</span></span>
+    </a>
+    <span class="header-sep">/</span>
+    <nav class="header-breadcrumb">
+      <a href="index.html">Home</a>
+      &nbsp;›&nbsp;ML&nbsp;›&nbsp;PCA Understanding
+    </nav>
+    <div class="header-right">
+      <a href="mailto:itsramakrushna@gmail.com">Contact</a>
+      <a href="#">GitHub</a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Browse</div>
+
+      <div class="folder-item" id="folder-agents">
+        <div class="folder-header" onclick="toggleFolder('folder-agents')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          Agents
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="how-to-build-ai-agents.html"><span class="file-dot"></span>How to Build AI Agents</a>
+        </div>
+      </div>
+
+      <div class="folder-item open" id="folder-ml">
+        <div class="folder-header" onclick="toggleFolder('folder-ml')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          ML
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="gradient-descent-in-detail.html"><span class="file-dot"></span>Gradient Descent in Detail</a>
+          <a class="nav-link active" href="pca-understanding.html"><span class="file-dot"></span>PCA Understanding</a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-rag">
+        <div class="folder-header" onclick="toggleFolder('folder-rag')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          RAG
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="introduction-to-rag.html"><span class="file-dot"></span>Introduction to RAG</a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-api">
+        <div class="folder-header" onclick="toggleFolder('folder-api')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          API
+        </div>
+        <div class="folder-children">
+          <div class="nav-coming-soon">Coming soon…</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="article-container">
+
+        <div class="article-tag">ML</div>
+        <div class="article-meta">
+          Ramakrushna Mohapatra <span class="sep">·</span> April 23, 2026 <span class="sep">·</span> 13 min read
+        </div>
+        <h1 class="article-title">PCA Understanding</h1>
+        <p class="article-intro">
+          Real-world datasets have hundreds or thousands of features. Most of that information is redundant —
+          many features are correlated and can be summarised by fewer variables without meaningful loss. Principal
+          Component Analysis (PCA) finds those directions of maximum variance and projects your data onto them.
+          This note explains the geometry, the math, and the code.
+        </p>
+
+        <div class="article-body">
+
+          <h2>The Problem: Too Many Dimensions</h2>
+          <p>
+            When data has many features, three bad things happen: models overfit, distances become meaningless
+            (the "curse of dimensionality"), and visualisation becomes impossible. PCA compresses the data into
+            a lower-dimensional representation that preserves as much variance as possible.
+          </p>
+
+          <!-- Diagram 1: High-dim → low-dim -->
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 680 190" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <defs>
+                <marker id="arr-pca" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#4f46e5"/>
+                </marker>
+              </defs>
+
+              <!-- High-dim box -->
+              <rect x="20" y="30" width="220" height="140" rx="10" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.5"/>
+              <text x="130" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">Original Space (p dims)</text>
+
+              <!-- Many feature labels -->
+              <text x="50"  y="78"  font-size="10" fill="#4f46e5">feature_1</text>
+              <text x="50"  y="95"  font-size="10" fill="#4f46e5">feature_2</text>
+              <text x="50"  y="112" font-size="10" fill="#4f46e5">feature_3</text>
+              <text x="50"  y="129" font-size="10" fill="#4f46e5">feature_4</text>
+              <text x="50"  y="146" font-size="10" fill="#4f46e5">feature_5</text>
+              <text x="130" y="158" font-size="10" fill="#94a3b8">… p features total</text>
+
+              <!-- Correlated bars suggesting redundancy -->
+              <rect x="155" y="70"  width="65" height="8" rx="3" fill="#4f46e5" opacity="0.7"/>
+              <rect x="155" y="87"  width="60" height="8" rx="3" fill="#4f46e5" opacity="0.65"/>
+              <rect x="155" y="104" width="63" height="8" rx="3" fill="#4f46e5" opacity="0.68"/>
+              <rect x="155" y="121" width="58" height="8" rx="3" fill="#4f46e5" opacity="0.6"/>
+              <rect x="155" y="138" width="62" height="8" rx="3" fill="#4f46e5" opacity="0.63"/>
+
+              <!-- Arrow -->
+              <text x="290" y="98"  font-size="28" fill="#4f46e5">→</text>
+              <text x="278" y="115" font-size="10" fill="#4f46e5" font-weight="600">PCA</text>
+
+              <!-- Low-dim box -->
+              <rect x="330" y="50" width="180" height="100" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+              <text x="420" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">Reduced Space (k dims)</text>
+              <text x="355" y="98"  font-size="10" fill="#16a34a">PC 1</text>
+              <text x="355" y="115" font-size="10" fill="#16a34a">PC 2</text>
+              <text x="420" y="136" font-size="10" fill="#94a3b8">k ≪ p</text>
+              <rect x="395" y="91"  width="100" height="8" rx="3" fill="#16a34a" opacity="0.8"/>
+              <rect x="395" y="108" width="72"  height="8" rx="3" fill="#16a34a" opacity="0.55"/>
+
+              <!-- Arrow to scatter -->
+              <line x1="510" y1="100" x2="548" y2="100" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-pca)"/>
+
+              <!-- Mini scatter plot -->
+              <rect x="550" y="40" width="120" height="130" rx="8" fill="#fff" stroke="#e0d9cc" stroke-width="1"/>
+              <text x="610" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">Scatter (2D)</text>
+              <circle cx="575" cy="80"  r="4" fill="#4f46e5" opacity="0.7"/>
+              <circle cx="590" cy="95"  r="4" fill="#4f46e5" opacity="0.7"/>
+              <circle cx="580" cy="110" r="4" fill="#16a34a" opacity="0.7"/>
+              <circle cx="620" cy="90"  r="4" fill="#16a34a" opacity="0.7"/>
+              <circle cx="605" cy="120" r="4" fill="#f59e0b" opacity="0.7"/>
+              <circle cx="640" cy="100" r="4" fill="#f59e0b" opacity="0.7"/>
+              <circle cx="630" cy="135" r="4" fill="#ef4444" opacity="0.7"/>
+              <circle cx="660" cy="115" r="4" fill="#ef4444" opacity="0.7"/>
+            </svg>
+            <div class="diagram-caption">Figure 1 — PCA compresses correlated high-dimensional features into a small set of uncorrelated principal components</div>
+          </div>
+
+          <h2>The Geometric Intuition</h2>
+          <p>
+            PCA finds the axes (principal components) along which the data varies the <em>most</em>. The first
+            principal component (PC1) is the line through the data cloud that minimises the total squared distance
+            from each point to the line — equivalently, maximises the variance of the projected points. PC2 is
+            the next best axis, constrained to be perpendicular to PC1, and so on.
+          </p>
+
+          <!-- Diagram 2: Data cloud + PC axes -->
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 500 280" width="80%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <!-- Axes -->
+              <line x1="60"  y1="240" x2="440" y2="240" stroke="#d6cfc3" stroke-width="1.2"/>
+              <line x1="60"  y1="40"  x2="60"  y2="240" stroke="#d6cfc3" stroke-width="1.2"/>
+              <text x="250" y="260" text-anchor="middle" font-size="10" fill="#a09585">Feature X₁</text>
+              <text x="30"  y="140" text-anchor="middle" font-size="10" fill="#a09585" transform="rotate(-90,30,140)">Feature X₂</text>
+
+              <!-- Data points (elongated cloud, top-left to bottom-right) -->
+              <circle cx="130" cy="80"  r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="155" cy="100" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="175" cy="95"  r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="200" cy="120" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="185" cy="130" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="220" cy="145" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="240" cy="138" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="260" cy="155" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="285" cy="165" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="265" cy="175" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="310" cy="180" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="330" cy="195" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="355" cy="205" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="310" cy="200" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="215" cy="110" r="5" fill="#4f46e5" opacity="0.6"/>
+              <circle cx="295" cy="170" r="5" fill="#4f46e5" opacity="0.6"/>
+
+              <!-- Mean point -->
+              <circle cx="245" cy="148" r="6" fill="none" stroke="#1c1714" stroke-width="2"/>
+              <text x="258" y="144" font-size="10" fill="#1c1714">mean</text>
+
+              <!-- PC1 axis (diagonal, major variance direction) -->
+              <line x1="100" y1="60" x2="390" y2="225" stroke="#ef4444" stroke-width="2.5"
+                    marker-end="url(#arr-pc1)" marker-start="url(#arr-pc1b)"/>
+              <defs>
+                <marker id="arr-pc1"  markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#ef4444"/></marker>
+                <marker id="arr-pc1b" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto"><path d="M7,0 L0,3.5 L7,7 Z" fill="#ef4444"/></marker>
+                <marker id="arr-pc2"  markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#16a34a"/></marker>
+                <marker id="arr-pc2b" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto"><path d="M7,0 L0,3.5 L7,7 Z" fill="#16a34a"/></marker>
+              </defs>
+              <text x="400" y="222" font-size="11" fill="#ef4444" font-weight="700">PC1</text>
+              <text x="96"  y="55"  font-size="10" fill="#ef4444">max variance</text>
+
+              <!-- PC2 axis (perpendicular to PC1) -->
+              <line x1="315" y1="90" x2="175" y2="210" stroke="#16a34a" stroke-width="2"
+                    marker-end="url(#arr-pc2)" marker-start="url(#arr-pc2b)"/>
+              <text x="316" y="86"  font-size="11" fill="#16a34a" font-weight="700">PC2</text>
+              <text x="320" y="100" font-size="10" fill="#16a34a">⊥ to PC1</text>
+
+              <!-- Projection lines from 2 points to PC1 -->
+              <line x1="130" y1="80"  x2="157" y2="96"  stroke="#94a3b8" stroke-width="1" stroke-dasharray="3"/>
+              <line x1="355" cy1="205" x2="348" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3"/>
+              <line x1="355" y1="205" x2="350" y2="201" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3"/>
+            </svg>
+            <div class="diagram-caption">Figure 2 — PC1 captures maximum variance (the "long axis" of the cloud); PC2 is orthogonal and captures remaining variance</div>
+          </div>
+
+          <h2>The Algorithm: Step by Step</h2>
+
+          <!-- Diagram 3: Algorithm steps -->
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 680 80" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <defs><marker id="arr-step" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#64748b"/></marker></defs>
+
+              <rect x="10"  y="10" width="110" height="60" rx="8" fill="#4f46e5"/>
+              <text x="65"  y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">① Centre</text>
+              <text x="65"  y="50" text-anchor="middle" font-size="9"  fill="#c7d2fe">subtract mean</text>
+              <text x="65"  y="63" text-anchor="middle" font-size="9"  fill="#c7d2fe">from each col</text>
+
+              <line x1="120" y1="40" x2="138" y2="40" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-step)"/>
+
+              <rect x="140" y="10" width="120" height="60" rx="8" fill="#4f46e5"/>
+              <text x="200" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">② Covariance</text>
+              <text x="200" y="50" text-anchor="middle" font-size="9"  fill="#c7d2fe">Σ = XᵀX / (n−1)</text>
+              <text x="200" y="63" text-anchor="middle" font-size="9"  fill="#c7d2fe">p × p matrix</text>
+
+              <line x1="260" y1="40" x2="278" y2="40" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-step)"/>
+
+              <rect x="280" y="10" width="120" height="60" rx="8" fill="#4f46e5"/>
+              <text x="340" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">③ Eigenvectors</text>
+              <text x="340" y="50" text-anchor="middle" font-size="9"  fill="#c7d2fe">Σv = λv</text>
+              <text x="340" y="63" text-anchor="middle" font-size="9"  fill="#c7d2fe">sort by λ desc</text>
+
+              <line x1="400" y1="40" x2="418" y2="40" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-step)"/>
+
+              <rect x="420" y="10" width="110" height="60" rx="8" fill="#4f46e5"/>
+              <text x="475" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">④ Select top k</text>
+              <text x="475" y="50" text-anchor="middle" font-size="9"  fill="#c7d2fe">k components</text>
+              <text x="475" y="63" text-anchor="middle" font-size="9"  fill="#c7d2fe">form matrix W</text>
+
+              <line x1="530" y1="40" x2="548" y2="40" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-step)"/>
+
+              <rect x="550" y="10" width="118" height="60" rx="8" fill="#16a34a"/>
+              <text x="609" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">⑤ Project</text>
+              <text x="609" y="50" text-anchor="middle" font-size="9"  fill="#bbf7d0">Z = X · W</text>
+              <text x="609" y="63" text-anchor="middle" font-size="9"  fill="#bbf7d0">n × k result</text>
+            </svg>
+            <div class="diagram-caption">Figure 3 — The five-step PCA algorithm from raw data to reduced representation</div>
+          </div>
+
+          <h2>PCA from Scratch in NumPy</h2>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tk">import</span> numpy <span class="tk">as</span> np
+
+<span class="tk">def</span> <span class="tf">pca</span>(X: np.ndarray, k: <span class="tcl">int</span>) -> <span class="tcl">tuple</span>:
+    <span class="ts">"""
+    Principal Component Analysis from scratch.
+    X : (n, p) data matrix
+    k : number of components to keep
+    Returns: Z (projected data), W (component matrix), explained_variance_ratio
+    """</span>
+    <span class="tc"># ① Centre the data</span>
+    X_c = X - X.mean(axis=<span class="tn">0</span>)
+
+    <span class="tc"># ② Covariance matrix  (p × p)</span>
+    cov = (X_c.T @ X_c) / (X_c.shape[<span class="tn">0</span>] - <span class="tn">1</span>)
+
+    <span class="tc"># ③ Eigendecomposition</span>
+    eigenvalues, eigenvectors = np.linalg.eigh(cov)
+
+    <span class="tc"># ④ Sort descending & pick top k</span>
+    order = np.argsort(eigenvalues)[::-<span class="tn">1</span>]
+    eigenvalues  = eigenvalues[order]
+    eigenvectors = eigenvectors[:, order]
+    W = eigenvectors[:, :k]           <span class="tc"># (p, k) projection matrix</span>
+
+    <span class="tc"># ⑤ Project onto k components</span>
+    Z = X_c @ W                       <span class="tc"># (n, k)</span>
+
+    explained = eigenvalues[:k] / eigenvalues.sum()
+    <span class="tk">return</span> Z, W, explained
+
+<span class="tc"># ── Example ──────────────────────────────────────────────</span>
+np.random.seed(<span class="tn">42</span>)
+X = np.random.randn(<span class="tn">200</span>, <span class="tn">10</span>)   <span class="tc"># 200 samples, 10 features</span>
+
+Z, W, evr = pca(X, k=<span class="tn">2</span>)
+
+<span class="tf">print</span>(<span class="ts">f"Original shape : {X.shape}"</span>)       <span class="tc"># (200, 10)</span>
+<span class="tf">print</span>(<span class="ts">f"Reduced shape  : {Z.shape}"</span>)       <span class="tc"># (200, 2)</span>
+<span class="tf">print</span>(<span class="ts">f"Explained var  : {evr.sum():.1%}"</span>) <span class="tc"># ~20% (random data)</span></code></pre>
+          </div>
+
+          <h2>PCA with scikit-learn</h2>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tk">from</span> sklearn.decomposition <span class="tk">import</span> PCA
+<span class="tk">from</span> sklearn.preprocessing <span class="tk">import</span> StandardScaler
+<span class="tk">from</span> sklearn.datasets <span class="tk">import</span> load_digits
+<span class="tk">import</span> matplotlib.pyplot <span class="tk">as</span> plt
+
+<span class="tc"># Load 64-feature digit images</span>
+digits = load_digits()
+X, y   = digits.data, digits.target      <span class="tc"># (1797, 64)</span>
+
+<span class="tc"># Always scale before PCA!</span>
+X_scaled = StandardScaler().fit_transform(X)
+
+<span class="tc"># ── How many components to keep? ─────────────────────────</span>
+pca_full = PCA().fit(X_scaled)
+cumvar   = pca_full.explained_variance_ratio_.cumsum()
+n_95     = (cumvar >= <span class="tn">0.95</span>).argmax() + <span class="tn">1</span>
+<span class="tf">print</span>(<span class="ts">f"Components for 95% variance: {n_95}"</span>)  <span class="tc"># ~29</span>
+
+<span class="tc"># ── Reduce to 2D for visualisation ───────────────────────</span>
+pca_2d = PCA(n_components=<span class="tn">2</span>, random_state=<span class="tn">42</span>)
+Z = pca_2d.fit_transform(X_scaled)
+
+<span class="tf">print</span>(<span class="ts">f"Explained (2 PCs): {pca_2d.explained_variance_ratio_.sum():.1%}"</span>)
+
+plt.figure(figsize=(<span class="tn">8</span>, <span class="tn">6</span>))
+scatter = plt.scatter(Z[:, <span class="tn">0</span>], Z[:, <span class="tn">1</span>], c=y, cmap=<span class="ts">"tab10"</span>, s=<span class="tn">15</span>, alpha=<span class="tn">0.7</span>)
+plt.colorbar(scatter, label=<span class="ts">"Digit class"</span>)
+plt.xlabel(<span class="ts">"PC 1"</span>); plt.ylabel(<span class="ts">"PC 2"</span>)
+plt.title(<span class="ts">"MNIST digits projected to 2D via PCA"</span>)
+plt.tight_layout(); plt.show()</code></pre>
+          </div>
+
+          <h2>Choosing the Number of Components</h2>
+          <p>Plot the <strong>cumulative explained variance ratio</strong> and pick the "elbow" — the point where adding another component brings diminishing returns.</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code">plt.plot(<span class="tf">range</span>(<span class="tn">1</span>, <span class="tf">len</span>(cumvar) + <span class="tn">1</span>), cumvar, marker=<span class="ts">"o"</span>, ms=<span class="tn">3</span>)
+plt.axhline(<span class="tn">0.95</span>, color=<span class="ts">"red"</span>, linestyle=<span class="ts">"--"</span>, label=<span class="ts">"95% threshold"</span>)
+plt.axvline(n_95,  color=<span class="ts">"red"</span>, linestyle=<span class="ts">"--"</span>)
+plt.xlabel(<span class="ts">"Number of components"</span>)
+plt.ylabel(<span class="ts">"Cumulative explained variance"</span>)
+plt.legend(); plt.tight_layout(); plt.show()</code></pre>
+          </div>
+
+          <!-- Diagram 4: Scree plot sketch -->
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 500 200" width="70%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <!-- Axes -->
+              <line x1="60" y1="170" x2="460" y2="170" stroke="#d6cfc3" stroke-width="1.5"/>
+              <line x1="60" y1="20"  x2="60"  y2="170" stroke="#d6cfc3" stroke-width="1.5"/>
+              <text x="260" y="190" text-anchor="middle" font-size="10" fill="#a09585">Number of components</text>
+              <text x="20"  y="95"  text-anchor="middle" font-size="10" fill="#a09585" transform="rotate(-90,20,95)">Cumulative variance</text>
+
+              <!-- Y labels -->
+              <text x="55" y="172" text-anchor="end" font-size="9" fill="#a09585">0%</text>
+              <text x="55" y="120" text-anchor="end" font-size="9" fill="#a09585">50%</text>
+              <text x="55" y="68"  text-anchor="end" font-size="9" fill="#a09585">100%</text>
+              <line x1="58" y1="68"  x2="62" y2="68"  stroke="#d6cfc3" stroke-width="1"/>
+              <line x1="58" y1="120" x2="62" y2="120" stroke="#d6cfc3" stroke-width="1"/>
+
+              <!-- Cumulative variance curve (log-like) -->
+              <path d="M70,165 C100,130 130,90 160,65 C185,48 210,38 240,33
+                        C270,29 300,27 340,26 C380,25 420,25 450,25"
+                    fill="none" stroke="#4f46e5" stroke-width="2.5"/>
+
+              <!-- 95% threshold line -->
+              <line x1="60" y1="42" x2="460" y2="42" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="5,3"/>
+              <text x="464" y="46" font-size="9" fill="#ef4444">95%</text>
+
+              <!-- Vertical marker at elbow -->
+              <line x1="200" y1="42" x2="200" y2="170" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="5,3"/>
+              <text x="200" y="183" text-anchor="middle" font-size="9" fill="#ef4444">k = 29</text>
+
+              <!-- Dot at intersection -->
+              <circle cx="200" cy="42" r="5" fill="#ef4444"/>
+
+              <text x="260" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Scree plot — pick k at the 95% elbow</text>
+            </svg>
+            <div class="diagram-caption">Figure 4 — The scree plot shows how much variance each additional component captures; choose k where the curve flattens</div>
+          </div>
+
+          <h2>When to Use PCA</h2>
+          <table>
+            <thead><tr><th>Use PCA when…</th><th>Avoid PCA when…</th></tr></thead>
+            <tbody>
+              <tr><td>Features are highly correlated</td><td>Features are already low-dimensional</td></tr>
+              <tr><td>You need 2D/3D visualisation</td><td>You need interpretable features</td></tr>
+              <tr><td>Training is slow due to many features</td><td>Non-linear structure is important (use t-SNE / UMAP)</td></tr>
+              <tr><td>Removing noise before downstream ML</td><td>Data has categorical features</td></tr>
+              <tr><td>Preprocessing for clustering</td><td>Class separation is the primary goal (use LDA)</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout warn">
+            <span class="callout-label">Important</span>
+            <p>Always <strong>standardise</strong> your features (zero mean, unit variance) before PCA. Features on larger scales will dominate the principal components otherwise.</p>
+          </div>
+
+          <h2>PCA vs. Other Dimensionality Reduction Methods</h2>
+          <table>
+            <thead><tr><th>Method</th><th>Linear?</th><th>Best for</th><th>Speed</th></tr></thead>
+            <tbody>
+              <tr><td><strong>PCA</strong></td><td>Yes</td><td>General preprocessing, noise removal</td><td>Fast</td></tr>
+              <tr><td><strong>t-SNE</strong></td><td>No</td><td>Cluster visualisation</td><td>Slow</td></tr>
+              <tr><td><strong>UMAP</strong></td><td>No</td><td>Large-scale visualisation, preserves structure</td><td>Medium</td></tr>
+              <tr><td><strong>LDA</strong></td><td>Yes</td><td>Supervised class separation</td><td>Fast</td></tr>
+              <tr><td><strong>Autoencoder</strong></td><td>No</td><td>Complex non-linear compression</td><td>Slow (training)</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Common Pitfalls</h2>
+          <ul>
+            <li><strong>Forgetting to scale</strong> — features in metres vs. kilometres give wildly different PCs. Always <code>StandardScaler</code> first.</li>
+            <li><strong>Fitting on the test set</strong> — fit the PCA on training data only, then <code>transform</code> both train and test.</li>
+            <li><strong>Keeping too few components</strong> — if you keep only 2 PCs for a downstream classifier, you might lose discriminative signal. Check accuracy vs. k.</li>
+            <li><strong>Using PCA for non-linear data</strong> — Swiss roll, concentric circles, and manifolds need t-SNE or UMAP.</li>
+            <li><strong>Interpreting PCs as features</strong> — PCs are linear combinations of all original features. They're hard to explain to stakeholders.</li>
+          </ul>
+
+          <div class="callout tip">
+            <span class="callout-label">Pipeline tip</span>
+            <p>In scikit-learn, use <code>Pipeline([('scaler', StandardScaler()), ('pca', PCA(n_components=0.95)), ('clf', ...)])</code> to chain scaling → PCA → model in one object that cross-validates correctly.</p>
+          </div>
+
+          <h2>Resources to Read More</h2>
+          <div class="resources-grid">
+            <a class="resource-card" href="https://setosa.io/ev/principal-component-analysis/" target="_blank" rel="noopener">
+              <div class="resource-card-type">Interactive</div>
+              <div class="resource-card-title">Setosa — Visual PCA Explainer</div>
+              <div class="resource-card-desc">The best interactive visualisation of what PCA actually does to data.</div>
+            </a>
+            <a class="resource-card" href="https://scikit-learn.org/stable/modules/decomposition.html#pca" target="_blank" rel="noopener">
+              <div class="resource-card-type">Docs</div>
+              <div class="resource-card-title">scikit-learn PCA Docs</div>
+              <div class="resource-card-desc">Full API reference with examples including incremental and kernel PCA.</div>
+            </a>
+            <a class="resource-card" href="https://arxiv.org/abs/1404.1100" target="_blank" rel="noopener">
+              <div class="resource-card-type">Paper</div>
+              <div class="resource-card-title">A Tutorial on Principal Component Analysis</div>
+              <div class="resource-card-desc">Shlens (2014) — the clearest mathematical derivation of PCA.</div>
+            </a>
+            <a class="resource-card" href="https://cs229.stanford.edu/notes2021fall/cs229-notes10.pdf" target="_blank" rel="noopener">
+              <div class="resource-card-type">Course notes</div>
+              <div class="resource-card-title">CS229 — PCA Lecture Notes</div>
+              <div class="resource-card-desc">Stanford ML course notes covering PCA with full derivations.</div>
+            </a>
+          </div>
+
+          <hr>
+          <p style="color:var(--text-faint);font-family:var(--font-sans);font-size:0.875rem;">
+            Written by Ramakrushna Mohapatra · April 23, 2026 ·
+            Found a mistake? <a href="mailto:itsramakrushna@gmail.com">Email me</a>
+          </p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <span>RK Notes · Ramakrushna Mohapatra</span>
+        <span><a href="mailto:itsramakrushna@gmail.com">Contact</a> · <a href="index.html">← All notes</a></span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    function toggleFolder(id) { document.getElementById(id).classList.toggle('open'); }
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = 'Copied!'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

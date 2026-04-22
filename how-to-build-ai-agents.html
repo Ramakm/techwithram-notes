@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Build AI Agents · RK Notes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234f46e5'/><text x='16' y='22' text-anchor='middle' font-family='system-ui,sans-serif' font-size='13' font-weight='800' fill='white'>RK</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-link" href="index.html">
+      <img src="Ram.png" alt="Ramakrushna" class="logo-avatar" />
+      <span class="logo-text">RK <span>notes</span></span>
+    </a>
+    <span class="header-sep">/</span>
+    <nav class="header-breadcrumb">
+      <a href="index.html">Home</a>
+      &nbsp;›&nbsp;Agents&nbsp;›&nbsp;How to Build AI Agents
+    </nav>
+    <div class="header-right">
+      <a href="mailto:itsramakrushna@gmail.com">Contact</a>
+      <a href="#">GitHub</a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Browse</div>
+
+      <div class="folder-item open" id="folder-agents">
+        <div class="folder-header" onclick="toggleFolder('folder-agents')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          Agents
+        </div>
+        <div class="folder-children">
+          <a class="nav-link active" href="how-to-build-ai-agents.html">
+            <span class="file-dot"></span>How to Build AI Agents
+          </a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-ml">
+        <div class="folder-header" onclick="toggleFolder('folder-ml')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          ML
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="gradient-descent-in-detail.html"><span class="file-dot"></span>Gradient Descent in Detail</a>
+          <a class="nav-link" href="pca-understanding.html"><span class="file-dot"></span>PCA Understanding</a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-rag">
+        <div class="folder-header" onclick="toggleFolder('folder-rag')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          RAG
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="introduction-to-rag.html">
+            <span class="file-dot"></span>Introduction to RAG
+          </a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-api">
+        <div class="folder-header" onclick="toggleFolder('folder-api')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          API
+        </div>
+        <div class="folder-children">
+          <div class="nav-coming-soon">Coming soon…</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article -->
+    <main class="main">
+      <div class="article-container">
+
+        <div class="article-tag">Agents</div>
+        <div class="article-meta">
+          Ramakrushna Mohapatra <span class="sep">·</span> April 23, 2026 <span class="sep">·</span> 12 min read
+        </div>
+        <h1 class="article-title">How to Build AI Agents</h1>
+        <p class="article-intro">
+          An AI agent is a program that uses a language model as its brain — in a loop. It receives a task,
+          thinks, calls tools, observes results, and repeats until done. This note walks through what that
+          actually means in code, from a bare loop to a production-ready system.
+        </p>
+
+        <div class="article-body">
+
+          <h2>What is an AI Agent?</h2>
+          <p>The term "agent" gets overloaded. At its core, an agent is a <strong>loop</strong>: a language model that can take actions via tools, observe results, and decide what to do next — without a human in the middle.</p>
+          <p style="text-align:center;font-size:1.1rem;font-weight:600;letter-spacing:0.02em;color:var(--accent);margin:24px 0;">Agent = LLM + Tools + Loop</p>
+
+          <table>
+            <thead><tr><th>Component</th><th>Role</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>LLM</strong></td><td>Reasoning engine</td><td>Claude, GPT-4o, Llama 3</td></tr>
+              <tr><td><strong>Tools</strong></td><td>Actions in the world</td><td>web_search, run_code, read_file</td></tr>
+              <tr><td><strong>Memory</strong></td><td>Context persistence</td><td>Message history, vector store</td></tr>
+              <tr><td><strong>Loop</strong></td><td>Orchestration</td><td>while not done: think → act → observe</td></tr>
+            </tbody>
+          </table>
+
+          <h2>The Agent Loop</h2>
+          <p>Every agent runs some version of this loop. The LLM sees the conversation history plus tool results, produces a response (which may include tool calls), you execute those tools, append the results, and repeat until the model stops requesting tools.</p>
+
+          <div class="terminal-block">
+            <div class="terminal-header"><div class="td-r"></div><div class="td-y"></div><div class="td-g"></div></div>
+            <div class="terminal-body">
+<span class="tu">User:</span>  What's the weather in SF and the top HN story today?<br><br>
+<span class="tai">Agent:</span> I need two things. Let me call tools.<br>
+<span class="tt">→ get_weather</span>(<span class="ts">"San Francisco"</span>)<br>
+<span class="to">   result: "16°C, partly cloudy"</span><br>
+<span class="tt">→ fetch_url</span>(<span class="ts">"https://news.ycombinator.com"</span>)<br>
+<span class="to">   result: "Top: 'We built an agent in 50 lines' ..."</span><br><br>
+<span class="tai">Agent:</span> SF is 16 °C and partly cloudy. The top HN story is…
+            </div>
+          </div>
+
+          <h2>Step 1 — Define Your Tools</h2>
+          <p>Tools are functions your agent can call. You describe each tool's schema so the LLM knows when and how to use it.</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tc"># tools.py</span>
+<span class="tk">import</span> httpx, json
+
+<span class="tk">def</span> <span class="tf">web_search</span>(query: <span class="tcl">str</span>) -> <span class="tcl">str</span>:
+    <span class="ts">"""Search the web and return top results."""</span>
+    resp = httpx.get(<span class="ts">f"https://api.duckduckgo.com/?q={query}&format=json"</span>)
+    results = resp.json().get(<span class="ts">"RelatedTopics"</span>, [])[:3]
+    <span class="tk">return</span> json.dumps([r.get(<span class="ts">"Text"</span>) <span class="tk">for</span> r <span class="tk">in</span> results])
+
+TOOLS = [{
+    <span class="ts">"name"</span>: <span class="ts">"web_search"</span>,
+    <span class="ts">"description"</span>: <span class="ts">"Search the web for up-to-date information."</span>,
+    <span class="ts">"input_schema"</span>: {
+        <span class="ts">"type"</span>: <span class="ts">"object"</span>,
+        <span class="ts">"properties"</span>: {<span class="ts">"query"</span>: {<span class="ts">"type"</span>: <span class="ts">"string"</span>}},
+        <span class="ts">"required"</span>: [<span class="ts">"query"</span>]
+    }
+}]
+TOOL_MAP = {<span class="ts">"web_search"</span>: web_search}</code></pre>
+          </div>
+
+          <h2>Step 2 — Write the Agent Loop</h2>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tc"># agent.py</span>
+<span class="tk">import</span> anthropic
+<span class="tk">from</span> tools <span class="tk">import</span> TOOLS, TOOL_MAP
+
+client = anthropic.Anthropic()
+
+<span class="tk">def</span> <span class="tf">run_agent</span>(task: <span class="tcl">str</span>, max_iter: <span class="tcl">int</span> = <span class="tn">10</span>) -> <span class="tcl">str</span>:
+    messages = [{<span class="ts">"role"</span>: <span class="ts">"user"</span>, <span class="ts">"content"</span>: task}]
+
+    <span class="tk">for</span> _ <span class="tk">in</span> <span class="tf">range</span>(max_iter):
+        response = client.messages.create(
+            model=<span class="ts">"claude-sonnet-4-6"</span>,
+            max_tokens=<span class="tn">4096</span>,
+            tools=TOOLS,
+            messages=messages,
+        )
+        <span class="tk">if</span> response.stop_reason != <span class="ts">"tool_use"</span>:
+            <span class="tk">return</span> <span class="tf">next</span>(b.text <span class="tk">for</span> b <span class="tk">in</span> response.content <span class="tk">if</span> b.type == <span class="ts">"text"</span>)
+
+        messages.append({<span class="ts">"role"</span>: <span class="ts">"assistant"</span>, <span class="ts">"content"</span>: response.content})
+        tool_results = []
+        <span class="tk">for</span> block <span class="tk">in</span> response.content:
+            <span class="tk">if</span> block.type != <span class="ts">"tool_use"</span>: <span class="tk">continue</span>
+            <span class="tk">try</span>:
+                result = TOOL_MAP[block.name](**block.input)
+            <span class="tk">except</span> <span class="tcl">Exception</span> <span class="tk">as</span> e:
+                result = <span class="ts">f"Error: {e}"</span>
+            tool_results.append({
+                <span class="ts">"type"</span>: <span class="ts">"tool_result"</span>,
+                <span class="ts">"tool_use_id"</span>: block.id,
+                <span class="ts">"content"</span>: result,
+            })
+        messages.append({<span class="ts">"role"</span>: <span class="ts">"user"</span>, <span class="ts">"content"</span>: tool_results})
+
+    <span class="tk">return</span> <span class="ts">"Max iterations reached."</span></code></pre>
+          </div>
+
+          <div class="callout tip">
+            <span class="callout-label">Key insight</span>
+            <p>That loop above <em>is</em> the complete agent. Everything else — memory, streaming, planning — is layered on top of this core pattern.</p>
+          </div>
+
+          <h2>Step 3 — Add a System Prompt</h2>
+          <p>A system prompt shapes the agent's persona, tool preferences, output format, and constraints.</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code>SYSTEM = <span class="ts">"""You are a research agent. Answer questions accurately using tools.
+- Always search before stating facts
+- Cite sources when possible
+- If a tool fails, try an alternative approach
+- Be concise: one paragraph per topic
+"""</span>
+
+response = client.messages.create(
+    model=<span class="ts">"claude-sonnet-4-6"</span>,
+    system=SYSTEM,
+    max_tokens=<span class="tn">4096</span>,
+    tools=TOOLS,
+    messages=messages,
+)</code></pre>
+          </div>
+
+          <h2>Step 4 — Multi-Step Planning with LangGraph</h2>
+          <p>For complex tasks, wire up agents as a directed graph. Each node does one thing; edges control flow.</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tk">from</span> langgraph.graph <span class="tk">import</span> StateGraph, END
+<span class="tk">from</span> typing <span class="tk">import</span> TypedDict, Annotated
+<span class="tk">import</span> operator
+
+<span class="tk">class</span> <span class="tcl">AgentState</span>(TypedDict):
+    messages: Annotated[<span class="tcl">list</span>, operator.add]
+    task: <span class="tcl">str</span>
+    plan: <span class="tcl">str</span>
+    result: <span class="tcl">str</span>
+
+<span class="tk">def</span> <span class="tf">planner_node</span>(state):
+    <span class="tk">return</span> {<span class="ts">"plan"</span>: llm.invoke(<span class="ts">f"Plan: {state['task']}"</span>)}
+
+<span class="tk">def</span> <span class="tf">executor_node</span>(state):
+    <span class="tk">return</span> {<span class="ts">"result"</span>: run_agent(state[<span class="ts">"plan"</span>])}
+
+graph = StateGraph(AgentState)
+graph.add_node(<span class="ts">"planner"</span>,  planner_node)
+graph.add_node(<span class="ts">"executor"</span>, executor_node)
+graph.set_entry_point(<span class="ts">"planner"</span>)
+graph.add_edge(<span class="ts">"planner"</span>, <span class="ts">"executor"</span>)
+graph.add_edge(<span class="ts">"executor"</span>, END)
+app = graph.compile()</code></pre>
+          </div>
+
+          <h2>Step 5 — Streaming via FastAPI SSE</h2>
+          <p>Stream agent output token-by-token using Server-Sent Events so users don't stare at a blank screen.</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tk">from</span> fastapi <span class="tk">import</span> FastAPI, Request
+<span class="tk">from</span> fastapi.responses <span class="tk">import</span> StreamingResponse
+<span class="tk">import</span> json
+
+app = FastAPI()
+
+<span class="tk">async def</span> <span class="tf">_sse</span>(event: <span class="tcl">str</span>, data: <span class="tcl">dict</span>) -> <span class="tcl">str</span>:
+    <span class="tk">return</span> <span class="ts">f"event: {event}\ndata: {json.dumps(data)}\n\n"</span>
+
+<span class="td">@app.post</span>(<span class="ts">"/run"</span>)
+<span class="tk">async def</span> <span class="tf">run_endpoint</span>(request: Request):
+    body = <span class="tk">await</span> request.json()
+
+    <span class="tk">async def</span> <span class="tf">stream</span>():
+        <span class="tk">with</span> client.messages.stream(
+            model=<span class="ts">"claude-sonnet-4-6"</span>,
+            max_tokens=<span class="tn">4096</span>,
+            messages=[{<span class="ts">"role"</span>: <span class="ts">"user"</span>, <span class="ts">"content"</span>: body[<span class="ts">"task"</span>]}]
+        ) <span class="tk">as</span> s:
+            <span class="tk">async for</span> text <span class="tk">in</span> s.text_stream:
+                <span class="tk">yield await</span> <span class="tf">_sse</span>(<span class="ts">"token"</span>, {<span class="ts">"text"</span>: text})
+            <span class="tk">yield await</span> <span class="tf">_sse</span>(<span class="ts">"done"</span>, {})
+
+    <span class="tk">return</span> StreamingResponse(stream(), media_type=<span class="ts">"text/event-stream"</span>)</code></pre>
+          </div>
+
+          <h2>Production Checklist</h2>
+          <ul>
+            <li>Always set <code>max_iterations</code> — models can loop indefinitely</li>
+            <li>Wrap every tool call in <code>try/except</code> and return an error string</li>
+            <li>Log all LLM requests and tool results for debugging</li>
+            <li>Add per-tool timeouts (e.g., 30 s)</li>
+            <li>Stream output — don't make users wait for the full response</li>
+            <li>Cap <code>max_tokens</code> per task type</li>
+            <li>Trim old message turns to avoid context overflow</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="callout-label">Warning</span>
+            <p>Without a <code>max_iterations</code> guard a confused agent loops until you hit a rate limit or drain your API budget.</p>
+          </div>
+
+          <hr>
+          <p style="color:var(--text-faint);font-family:var(--font-sans);font-size:0.875rem;">
+            Written by Ramakrushna Mohapatra · April 23, 2026 ·
+            Found a mistake? <a href="mailto:itsramakrushna@gmail.com">Email me</a>
+          </p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <span>RK Notes · Ramakrushna Mohapatra</span>
+        <span><a href="mailto:itsramakrushna@gmail.com">Contact</a> · <a href="index.html">← All notes</a></span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    function toggleFolder(id) { document.getElementById(id).classList.toggle('open'); }
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = 'Copied!'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

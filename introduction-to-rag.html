@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to RAG · RK Notes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234f46e5'/><text x='16' y='22' text-anchor='middle' font-family='system-ui,sans-serif' font-size='13' font-weight='800' fill='white'>RK</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-link" href="index.html">
+      <img src="Ram.png" alt="Ramakrushna" class="logo-avatar" />
+      <span class="logo-text">RK <span>notes</span></span>
+    </a>
+    <span class="header-sep">/</span>
+    <nav class="header-breadcrumb">
+      <a href="index.html">Home</a>
+      &nbsp;›&nbsp;RAG&nbsp;›&nbsp;Introduction to RAG
+    </nav>
+    <div class="header-right">
+      <a href="mailto:itsramakrushna@gmail.com">Contact</a>
+      <a href="#">GitHub</a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Browse</div>
+
+      <div class="folder-item" id="folder-agents">
+        <div class="folder-header" onclick="toggleFolder('folder-agents')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          Agents
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="how-to-build-ai-agents.html">
+            <span class="file-dot"></span>How to Build AI Agents
+          </a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-ml">
+        <div class="folder-header" onclick="toggleFolder('folder-ml')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          ML
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="gradient-descent-in-detail.html"><span class="file-dot"></span>Gradient Descent in Detail</a>
+          <a class="nav-link" href="pca-understanding.html"><span class="file-dot"></span>PCA Understanding</a>
+        </div>
+      </div>
+
+      <div class="folder-item open" id="folder-rag">
+        <div class="folder-header" onclick="toggleFolder('folder-rag')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          RAG
+        </div>
+        <div class="folder-children">
+          <a class="nav-link active" href="introduction-to-rag.html">
+            <span class="file-dot"></span>Introduction to RAG
+          </a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-api">
+        <div class="folder-header" onclick="toggleFolder('folder-api')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          API
+        </div>
+        <div class="folder-children">
+          <div class="nav-coming-soon">Coming soon…</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article -->
+    <main class="main">
+      <div class="article-container">
+
+        <div class="article-tag">RAG</div>
+        <div class="article-meta">
+          Ramakrushna Mohapatra <span class="sep">·</span> April 23, 2026 <span class="sep">·</span> 16 min read
+        </div>
+        <h1 class="article-title">Introduction to Retrieval-Augmented Generation</h1>
+        <p class="article-intro">
+          LLMs know a lot — but their knowledge is frozen at training time and they can't see your private
+          documents. RAG fixes both problems by retrieving relevant context at inference time and injecting
+          it into the prompt. This note explains how it works, how to build it, and how to make it production-ready.
+        </p>
+
+        <div class="article-body">
+
+          <h2>The Core Problem RAG Solves</h2>
+          <p>A language model trained in mid-2024 knows nothing about your internal wiki, last week's support tickets, or the PDF your colleague sent this morning. You have three options:</p>
+          <ul>
+            <li><strong>Fine-tuning</strong> — retrain the model on your data. Expensive, slow, and the model still hallucinates facts.</li>
+            <li><strong>Stuffing context</strong> — paste all documents into the prompt. Works for small corpora; breaks at scale.</li>
+            <li><strong>RAG</strong> — search your documents at query time, pull only the relevant chunks, let the LLM reason over real evidence.</li>
+          </ul>
+
+          <div class="callout">
+            <span class="callout-label">Definition</span>
+            <p><strong>Retrieval-Augmented Generation (RAG)</strong> = search a knowledge base for relevant passages, insert them into the prompt, then generate a grounded answer.</p>
+          </div>
+
+          <h2>The Two Pipelines</h2>
+          <p>RAG has two distinct phases that run at different times:</p>
+
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 720 220" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <rect x="10" y="10" width="330" height="200" rx="12" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.5"/>
+              <rect x="380" y="10" width="330" height="200" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+              <text x="175" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca" letter-spacing="0.06em">INDEXING PIPELINE  (offline)</text>
+              <text x="545" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d" letter-spacing="0.06em">RETRIEVAL PIPELINE  (online)</text>
+              <rect x="30" y="50" width="80" height="36" rx="8" fill="#4f46e5"/><text x="70" y="73" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Documents</text>
+              <text x="125" y="71" text-anchor="middle" font-size="16" fill="#4f46e5">→</text>
+              <rect x="145" y="50" width="70" height="36" rx="8" fill="#4f46e5"/><text x="180" y="68" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Chunk</text><text x="180" y="81" text-anchor="middle" font-size="10" fill="#c7d2fe">&amp; Clean</text>
+              <text x="228" y="71" text-anchor="middle" font-size="16" fill="#4f46e5">→</text>
+              <rect x="248" y="50" width="70" height="36" rx="8" fill="#4f46e5"/><text x="283" y="68" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Embed</text><text x="283" y="81" text-anchor="middle" font-size="10" fill="#c7d2fe">→ vectors</text>
+              <ellipse cx="175" cy="148" rx="60" ry="24" fill="#4f46e5" opacity="0.15" stroke="#4f46e5" stroke-width="1"/>
+              <rect x="115" y="124" width="120" height="48" fill="none" stroke="#4f46e5" stroke-width="1" stroke-dasharray="4"/>
+              <ellipse cx="175" cy="124" rx="60" ry="16" fill="#4f46e5" opacity="0.2" stroke="#4f46e5" stroke-width="1"/>
+              <ellipse cx="175" cy="172" rx="60" ry="16" fill="#4f46e5" opacity="0.2" stroke="#4f46e5" stroke-width="1"/>
+              <text x="175" y="152" text-anchor="middle" font-size="10" font-weight="700" fill="#4338ca">Vector DB</text>
+              <line x1="283" y1="86" x2="283" y2="110" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="3"/>
+              <line x1="283" y1="110" x2="210" y2="130" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="3"/>
+              <defs>
+                <marker id="arr-ind" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4f46e5"/></marker>
+                <marker id="arr-ret" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#16a34a"/></marker>
+              </defs>
+              <rect x="400" y="50" width="64" height="36" rx="8" fill="#16a34a"/><text x="432" y="68" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Query</text><text x="432" y="81" text-anchor="middle" font-size="10" fill="#bbf7d0">user input</text>
+              <text x="476" y="71" text-anchor="middle" font-size="16" fill="#16a34a">→</text>
+              <rect x="488" y="50" width="64" height="36" rx="8" fill="#16a34a"/><text x="520" y="68" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Embed</text><text x="520" y="81" text-anchor="middle" font-size="10" fill="#bbf7d0">query</text>
+              <text x="564" y="71" text-anchor="middle" font-size="16" fill="#16a34a">→</text>
+              <rect x="576" y="50" width="64" height="36" rx="8" fill="#16a34a"/><text x="608" y="68" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Search</text><text x="608" y="81" text-anchor="middle" font-size="10" fill="#bbf7d0">top-k</text>
+              <line x1="608" y1="86" x2="608" y2="120" stroke="#16a34a" stroke-width="1.5"/>
+              <rect x="564" y="120" width="88" height="30" rx="7" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1"/>
+              <text x="608" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">Chunks Retrieved</text>
+              <line x1="608" y1="150" x2="608" y2="165" stroke="#16a34a" stroke-width="1.5"/>
+              <rect x="564" y="165" width="88" height="30" rx="7" fill="#16a34a"/>
+              <text x="608" y="185" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">LLM Answer</text>
+              <line x1="432" y1="86" x2="432" y2="165" stroke="#16a34a" stroke-width="1" stroke-dasharray="3"/>
+              <line x1="432" y1="175" x2="564" y2="178" stroke="#16a34a" stroke-width="1" stroke-dasharray="3" marker-end="url(#arr-ret)"/>
+            </svg>
+            <div class="diagram-caption">Figure 1 — Indexing (offline, run once) vs. Retrieval (online, per query)</div>
+          </div>
+
+          <h2>Pipeline 1: Indexing</h2>
+          <p>Indexing transforms raw documents into a searchable vector index. It runs <em>offline</em> — once per knowledge base update.</p>
+
+          <h3>Chunking with Overlap</h3>
+          <p>Documents are too long to embed whole. Split into chunks of 200–500 tokens with 10–20% overlap so no fact falls at a boundary seam.</p>
+
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 680 130" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <rect x="20" y="20" width="200" height="90" rx="8" fill="#fef9c3" stroke="#fde047" stroke-width="1.5"/>
+              <text x="120" y="44" text-anchor="middle" font-size="10" font-weight="700" fill="#713f12">Full Document</text>
+              <rect x="30" y="52" width="180" height="8" rx="3" fill="#fde047" opacity="0.6"/>
+              <rect x="30" y="65" width="180" height="8" rx="3" fill="#fde047" opacity="0.6"/>
+              <rect x="30" y="78" width="120" height="8" rx="3" fill="#fde047" opacity="0.6"/>
+              <rect x="30" y="91" width="150" height="8" rx="3" fill="#fde047" opacity="0.6"/>
+              <text x="238" y="70" text-anchor="middle" font-size="22" fill="#64748b">→</text>
+              <rect x="258" y="20" width="120" height="40" rx="7" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="318" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Chunk 1</text>
+              <rect x="298" y="30" width="80" height="6" rx="2" fill="#93c5fd" opacity="0.7"/>
+              <rect x="298" y="40" width="60" height="6" rx="2" fill="#93c5fd" opacity="0.7"/>
+              <rect x="258" y="68" width="120" height="40" rx="7" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="318" y="85" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Chunk 2</text>
+              <rect x="298" y="78" width="80" height="6" rx="2" fill="#93c5fd" opacity="0.7"/>
+              <rect x="298" y="88" width="50" height="6" rx="2" fill="#93c5fd" opacity="0.7"/>
+              <rect x="258" y="56" width="120" height="16" fill="#6366f1" opacity="0.12"/>
+              <text x="318" y="68" text-anchor="middle" font-size="9" fill="#4338ca">← overlap →</text>
+              <text x="400" y="70" text-anchor="middle" font-size="22" fill="#64748b">→</text>
+              <rect x="418" y="18" width="110" height="42" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+              <text x="473" y="34" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Chunk 1</text>
+              <text x="473" y="47" text-anchor="middle" font-size="9" fill="#15803d">[0.12, −0.34, 0.89…]</text>
+              <rect x="418" y="68" width="110" height="42" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+              <text x="473" y="84" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Chunk 2</text>
+              <text x="473" y="97" text-anchor="middle" font-size="9" fill="#15803d">[−0.05, 0.71, 0.23…]</text>
+              <text x="545" y="70" text-anchor="middle" font-size="22" fill="#64748b">→</text>
+              <ellipse cx="615" cy="38" rx="44" ry="14" fill="#7c3aed" opacity="0.2" stroke="#7c3aed" stroke-width="1.2"/>
+              <rect x="571" y="38" width="88" height="52" fill="#7c3aed" opacity="0.08" stroke="#7c3aed" stroke-width="1.2"/>
+              <ellipse cx="615" cy="90" rx="44" ry="14" fill="#7c3aed" opacity="0.15" stroke="#7c3aed" stroke-width="1.2"/>
+              <text x="615" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="#5b21b6">Vector DB</text>
+              <text x="120" y="120" text-anchor="middle" font-size="10" fill="#64748b">Raw document</text>
+              <text x="318" y="120" text-anchor="middle" font-size="10" fill="#64748b">Split with overlap</text>
+              <text x="473" y="120" text-anchor="middle" font-size="10" fill="#64748b">Embed each chunk</text>
+              <text x="615" y="120" text-anchor="middle" font-size="10" fill="#64748b">Store vectors</text>
+            </svg>
+            <div class="diagram-caption">Figure 2 — Chunking with overlap prevents facts from falling at boundary seams</div>
+          </div>
+
+          <h3>Embedding Models</h3>
+          <table>
+            <thead><tr><th>Model</th><th>Dims</th><th>Best for</th><th>Cost</th></tr></thead>
+            <tbody>
+              <tr><td><code>text-embedding-3-small</code></td><td>1536</td><td>General purpose, low cost</td><td>$0.02 / 1M tok</td></tr>
+              <tr><td><code>text-embedding-3-large</code></td><td>3072</td><td>High accuracy tasks</td><td>$0.13 / 1M tok</td></tr>
+              <tr><td><code>nomic-embed-text</code></td><td>768</td><td>Local / private (Ollama)</td><td>Free</td></tr>
+              <tr><td><code>mxbai-embed-large</code></td><td>1024</td><td>MTEB SOTA, local</td><td>Free</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Pipeline 2: Retrieval &amp; Generation</h2>
+          <p>At query time the user's query is embedded with the <em>same model</em> used during indexing — this is critical. You find the top-k nearest chunks by cosine similarity, inject them into the prompt, and let the LLM answer.</p>
+
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 700 170" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <defs><marker id="a1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#64748b"/></marker></defs>
+              <circle cx="50" cy="85" r="28" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+              <text x="50" y="82" text-anchor="middle" font-size="18">👤</text>
+              <text x="50" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#475569">User</text>
+              <line x1="78" y1="85" x2="116" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#a1)"/>
+              <rect x="118" y="62" width="88" height="46" rx="8" fill="#4f46e5"/>
+              <text x="162" y="81" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Embed</text>
+              <text x="162" y="95" text-anchor="middle" font-size="10" fill="#c7d2fe">query → vector</text>
+              <line x1="206" y1="85" x2="244" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#a1)"/>
+              <ellipse cx="298" cy="72" rx="44" ry="14" fill="#7c3aed" opacity="0.18" stroke="#7c3aed" stroke-width="1.2"/>
+              <rect x="254" y="72" width="88" height="38" fill="#7c3aed" opacity="0.06" stroke="#7c3aed" stroke-width="1.2"/>
+              <ellipse cx="298" cy="110" rx="44" ry="14" fill="#7c3aed" opacity="0.14" stroke="#7c3aed" stroke-width="1.2"/>
+              <text x="298" y="95" text-anchor="middle" font-size="10" font-weight="700" fill="#5b21b6">Vector DB</text>
+              <text x="298" y="108" text-anchor="middle" font-size="9" fill="#7c3aed">cosine search</text>
+              <line x1="342" y1="85" x2="380" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#a1)"/>
+              <rect x="382" y="52" width="88" height="66" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+              <text x="426" y="70" text-anchor="middle" font-size="10" font-weight="700" fill="#166534">Top-k Chunks</text>
+              <rect x="392" y="76" width="68" height="7" rx="3" fill="#4ade80" opacity="0.5"/>
+              <rect x="392" y="87" width="68" height="7" rx="3" fill="#4ade80" opacity="0.4"/>
+              <rect x="392" y="98" width="50" height="7" rx="3" fill="#4ade80" opacity="0.3"/>
+              <text x="426" y="116" text-anchor="middle" font-size="9" fill="#15803d">k = 3 to 8</text>
+              <line x1="470" y1="85" x2="508" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#a1)"/>
+              <rect x="510" y="55" width="88" height="60" rx="8" fill="#0f172a"/>
+              <text x="554" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24">LLM</text>
+              <text x="554" y="95" text-anchor="middle" font-size="9" fill="#94a3b8">chunks +</text>
+              <text x="554" y="107" text-anchor="middle" font-size="9" fill="#94a3b8">query</text>
+              <line x1="598" y1="85" x2="636" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#a1)"/>
+              <rect x="638" y="62" width="52" height="46" rx="8" fill="#16a34a"/>
+              <text x="664" y="82" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Grounded</text>
+              <text x="664" y="95" text-anchor="middle" font-size="10" fill="#bbf7d0">Answer</text>
+              <text x="162" y="150" text-anchor="middle" font-size="9.5" fill="#64748b">Same model as indexing</text>
+              <text x="298" y="150" text-anchor="middle" font-size="9.5" fill="#64748b">Nearest neighbor search</text>
+              <text x="426" y="150" text-anchor="middle" font-size="9.5" fill="#64748b">Inject into prompt</text>
+              <text x="554" y="150" text-anchor="middle" font-size="9.5" fill="#64748b">Generate with context</text>
+            </svg>
+            <div class="diagram-caption">Figure 3 — The retrieval &amp; generation pipeline runs on every query</div>
+          </div>
+
+          <h2>Building It: Full Code</h2>
+
+          <h3>Install dependencies</h3>
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code>pip install llama-index llama-index-embeddings-ollama \
+            llama-index-llms-ollama chromadb</code></pre>
+          </div>
+
+          <h3>Indexing pipeline</h3>
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tc"># index.py  —  run once to build the vector store</span>
+<span class="tk">from</span> llama_index.core <span class="tk">import</span> SimpleDirectoryReader, VectorStoreIndex, Settings
+<span class="tk">from</span> llama_index.embeddings.ollama <span class="tk">import</span> OllamaEmbedding
+<span class="tk">from</span> llama_index.llms.ollama <span class="tk">import</span> Ollama
+<span class="tk">from</span> llama_index.vector_stores.chroma <span class="tk">import</span> ChromaVectorStore
+<span class="tk">from</span> llama_index.core <span class="tk">import</span> StorageContext
+<span class="tk">import</span> chromadb
+
+Settings.embed_model   = OllamaEmbedding(model_name=<span class="ts">"nomic-embed-text"</span>)
+Settings.llm           = Ollama(model=<span class="ts">"llama3.2"</span>, request_timeout=<span class="tn">120</span>)
+Settings.chunk_size    = <span class="tn">512</span>
+Settings.chunk_overlap = <span class="tn">64</span>
+
+documents = SimpleDirectoryReader(<span class="ts">"./docs"</span>).load_data()
+<span class="tf">print</span>(<span class="ts">f"Loaded {len(documents)} document(s)"</span>)
+
+db                = chromadb.PersistentClient(path=<span class="ts">"./chroma_db"</span>)
+chroma_collection = db.get_or_create_collection(<span class="ts">"my_rag"</span>)
+vector_store      = ChromaVectorStore(chroma_collection=chroma_collection)
+storage_context   = StorageContext.from_defaults(vector_store=vector_store)
+
+index = VectorStoreIndex.from_documents(
+    documents, storage_context=storage_context, show_progress=<span class="tcl">True</span>
+)
+<span class="tf">print</span>(<span class="ts">"✓ Index built and persisted to ./chroma_db"</span>)</code></pre>
+          </div>
+
+          <h3>Query pipeline</h3>
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tc"># query.py</span>
+<span class="tk">from</span> llama_index.core <span class="tk">import</span> VectorStoreIndex, Settings
+<span class="tk">from</span> llama_index.embeddings.ollama <span class="tk">import</span> OllamaEmbedding
+<span class="tk">from</span> llama_index.llms.ollama <span class="tk">import</span> Ollama
+<span class="tk">from</span> llama_index.vector_stores.chroma <span class="tk">import</span> ChromaVectorStore
+<span class="tk">from</span> llama_index.core <span class="tk">import</span> StorageContext
+<span class="tk">import</span> chromadb
+
+Settings.embed_model = OllamaEmbedding(model_name=<span class="ts">"nomic-embed-text"</span>)
+Settings.llm         = Ollama(model=<span class="ts">"llama3.2"</span>, request_timeout=<span class="tn">120</span>)
+
+db              = chromadb.PersistentClient(path=<span class="ts">"./chroma_db"</span>)
+vector_store    = ChromaVectorStore(chroma_collection=db.get_collection(<span class="ts">"my_rag"</span>))
+storage_context = StorageContext.from_defaults(vector_store=vector_store)
+index           = VectorStoreIndex.from_vector_store(vector_store, storage_context=storage_context)
+
+query_engine = index.as_query_engine(
+    similarity_top_k=<span class="tn">5</span>,
+    streaming=<span class="tcl">True</span>,
+    response_mode=<span class="ts">"compact"</span>,
+)
+
+response = query_engine.query(<span class="ts">"What is the refund policy?"</span>)
+response.print_response_stream()
+
+<span class="tk">for</span> node <span class="tk">in</span> response.source_nodes:
+    <span class="tf">print</span>(<span class="ts">f"\n[score={node.score:.3f}] {node.text[:120]}…"</span>)</code></pre>
+          </div>
+
+          <div class="terminal-block">
+            <div class="terminal-header"><div class="td-r"></div><div class="td-y"></div><div class="td-g"></div></div>
+            <div class="terminal-body">
+<span class="tp">$</span> python query.py<br><br>
+<span class="tai">According to the policy, customers may request a full refund within 30 days.
+After 30 days, store credit is offered at the support team's discretion…</span><br><br>
+<span class="to">[score=0.912] "All purchases are covered by our 30-day money-back guarantee…"</span><br>
+<span class="to">[score=0.874] "Refund requests after 30 days will be reviewed on a case-by-case basis…"</span>
+            </div>
+          </div>
+
+          <h2>Chunking Strategies</h2>
+          <table>
+            <thead><tr><th>Strategy</th><th>When to use</th><th>Chunk size</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Fixed-size</strong></td><td>General documents, quick setup</td><td>256–512 tokens</td></tr>
+              <tr><td><strong>Sentence-aware</strong></td><td>Prose, articles, books</td><td>3–8 sentences</td></tr>
+              <tr><td><strong>Paragraph</strong></td><td>Dense factual text</td><td>1 paragraph</td></tr>
+              <tr><td><strong>Semantic</strong></td><td>Mixed-topic documents</td><td>Variable</td></tr>
+              <tr><td><strong>Markdown / header</strong></td><td>Docs, wikis, README files</td><td>Per section</td></tr>
+              <tr><td><strong>Code-aware</strong></td><td>Source files</td><td>Per function / class</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Vector Databases at a Glance</h2>
+          <table>
+            <thead><tr><th>Database</th><th>Deployment</th><th>Sweet spot</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ChromaDB</strong></td><td>In-process / self-hosted</td><td>Prototyping, small-medium</td></tr>
+              <tr><td><strong>Pinecone</strong></td><td>Managed cloud</td><td>Serverless, zero-ops</td></tr>
+              <tr><td><strong>Weaviate</strong></td><td>Cloud or self-hosted</td><td>Hybrid search (vector + BM25)</td></tr>
+              <tr><td><strong>Qdrant</strong></td><td>Cloud or self-hosted</td><td>High performance, filtering</td></tr>
+              <tr><td><strong>pgvector</strong></td><td>Postgres extension</td><td>Already using Postgres</td></tr>
+              <tr><td><strong>FAISS</strong></td><td>In-process (Meta)</td><td>Pure local, maximum speed</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Evaluation Metrics</h2>
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 680 120" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <rect x="10" y="10" width="152" height="100" rx="10" fill="#fff" stroke="#e0d9cc" stroke-width="1.5"/>
+              <text x="86" y="38" text-anchor="middle" font-size="22">🎯</text>
+              <text x="86" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1714">Faithfulness</text>
+              <text x="86" y="73" text-anchor="middle" font-size="10" fill="#6b6257">Answer grounded</text>
+              <text x="86" y="86" text-anchor="middle" font-size="10" fill="#6b6257">in retrieved docs?</text>
+              <rect x="176" y="10" width="152" height="100" rx="10" fill="#fff" stroke="#e0d9cc" stroke-width="1.5"/>
+              <text x="252" y="38" text-anchor="middle" font-size="22">🔍</text>
+              <text x="252" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1714">Relevance</text>
+              <text x="252" y="73" text-anchor="middle" font-size="10" fill="#6b6257">Chunks actually</text>
+              <text x="252" y="86" text-anchor="middle" font-size="10" fill="#6b6257">answer the query?</text>
+              <rect x="342" y="10" width="152" height="100" rx="10" fill="#fff" stroke="#e0d9cc" stroke-width="1.5"/>
+              <text x="418" y="38" text-anchor="middle" font-size="22">✅</text>
+              <text x="418" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1714">Correctness</text>
+              <text x="418" y="73" text-anchor="middle" font-size="10" fill="#6b6257">Matches ground</text>
+              <text x="418" y="86" text-anchor="middle" font-size="10" fill="#6b6257">truth answer?</text>
+              <rect x="508" y="10" width="162" height="100" rx="10" fill="#fff" stroke="#e0d9cc" stroke-width="1.5"/>
+              <text x="589" y="38" text-anchor="middle" font-size="22">⚡</text>
+              <text x="589" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1714">Latency</text>
+              <text x="589" y="73" text-anchor="middle" font-size="10" fill="#6b6257">Time to first</text>
+              <text x="589" y="86" text-anchor="middle" font-size="10" fill="#6b6257">token &lt; 2 s?</text>
+            </svg>
+            <div class="diagram-caption">Figure 4 — Four evaluation axes for a production RAG system</div>
+          </div>
+
+          <h2>Common Pitfalls</h2>
+          <ul>
+            <li><strong>Wrong embedding model at query time</strong> — use the exact same model that indexed the chunks.</li>
+            <li><strong>Chunks too large</strong> — big chunks hurt precision; irrelevant text around the answer confuses the LLM.</li>
+            <li><strong>Chunks too small</strong> — tiny chunks lose surrounding context needed to understand the answer.</li>
+            <li><strong>No overlap</strong> — facts at chunk boundaries become unretrieval.</li>
+            <li><strong>Retrieving too few chunks</strong> — <code>k=1</code> is fragile; use 3–8.</li>
+            <li><strong>Stale content</strong> — add a <code>last_updated</code> metadata field and filter on it.</li>
+          </ul>
+
+          <h2>Resources to Read More</h2>
+          <div class="resources-grid">
+            <a class="resource-card" href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener">
+              <div class="resource-card-type">Paper</div>
+              <div class="resource-card-title">RAG: Retrieval-Augmented Generation for Knowledge-Intensive NLP</div>
+              <div class="resource-card-desc">The original Lewis et al. paper that coined the term. Essential reading.</div>
+            </a>
+            <a class="resource-card" href="https://docs.llamaindex.ai" target="_blank" rel="noopener">
+              <div class="resource-card-type">Docs</div>
+              <div class="resource-card-title">LlamaIndex Documentation</div>
+              <div class="resource-card-desc">Best-in-class library for production RAG pipelines in Python.</div>
+            </a>
+            <a class="resource-card" href="https://python.langchain.com/docs/tutorials/rag/" target="_blank" rel="noopener">
+              <div class="resource-card-type">Tutorial</div>
+              <div class="resource-card-title">LangChain RAG Tutorial</div>
+              <div class="resource-card-desc">Step-by-step walkthrough of building a RAG chain with LCEL.</div>
+            </a>
+            <a class="resource-card" href="https://github.com/explodinggradients/ragas" target="_blank" rel="noopener">
+              <div class="resource-card-type">Library</div>
+              <div class="resource-card-title">RAGAS — RAG Evaluation</div>
+              <div class="resource-card-desc">Automated faithfulness, relevancy, and recall scoring.</div>
+            </a>
+            <a class="resource-card" href="https://huggingface.co/blog/getting-started-with-embeddings" target="_blank" rel="noopener">
+              <div class="resource-card-type">Blog</div>
+              <div class="resource-card-title">Getting Started with Embeddings</div>
+              <div class="resource-card-desc">Hugging Face deep-dive on embedding models and their applications.</div>
+            </a>
+            <a class="resource-card" href="https://docs.trychroma.com" target="_blank" rel="noopener">
+              <div class="resource-card-type">Docs</div>
+              <div class="resource-card-title">ChromaDB Documentation</div>
+              <div class="resource-card-desc">Simplest way to get a local vector store running in minutes.</div>
+            </a>
+          </div>
+
+          <hr>
+          <p style="color:var(--text-faint);font-family:var(--font-sans);font-size:0.875rem;">
+            Written by Ramakrushna Mohapatra · April 23, 2026 ·
+            Found a mistake? <a href="mailto:itsramakrushna@gmail.com">Email me</a>
+          </p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <span>RK Notes · Ramakrushna Mohapatra</span>
+        <span><a href="mailto:itsramakrushna@gmail.com">Contact</a> · <a href="index.html">← All notes</a></span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    function toggleFolder(id) { document.getElementById(id).classList.toggle('open'); }
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = 'Copied!'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

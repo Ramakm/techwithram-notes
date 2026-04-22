@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gradient Descent in Detail · RK Notes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234f46e5'/><text x='16' y='22' text-anchor='middle' font-family='system-ui,sans-serif' font-size='13' font-weight='800' fill='white'>RK</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-link" href="index.html">
+      <img src="Ram.png" alt="Ramakrushna" class="logo-avatar" />
+      <span class="logo-text">RK <span>notes</span></span>
+    </a>
+    <span class="header-sep">/</span>
+    <nav class="header-breadcrumb">
+      <a href="index.html">Home</a>
+      &nbsp;›&nbsp;ML&nbsp;›&nbsp;Gradient Descent in Detail
+    </nav>
+    <div class="header-right">
+      <a href="mailto:itsramakrushna@gmail.com">Contact</a>
+      <a href="#">GitHub</a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Browse</div>
+
+      <div class="folder-item" id="folder-agents">
+        <div class="folder-header" onclick="toggleFolder('folder-agents')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          Agents
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="how-to-build-ai-agents.html"><span class="file-dot"></span>How to Build AI Agents</a>
+        </div>
+      </div>
+
+      <div class="folder-item open" id="folder-ml">
+        <div class="folder-header" onclick="toggleFolder('folder-ml')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          ML
+        </div>
+        <div class="folder-children">
+          <a class="nav-link active" href="gradient-descent-in-detail.html"><span class="file-dot"></span>Gradient Descent in Detail</a>
+          <a class="nav-link" href="pca-understanding.html"><span class="file-dot"></span>PCA Understanding</a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-rag">
+        <div class="folder-header" onclick="toggleFolder('folder-rag')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          RAG
+        </div>
+        <div class="folder-children">
+          <a class="nav-link" href="introduction-to-rag.html"><span class="file-dot"></span>Introduction to RAG</a>
+        </div>
+      </div>
+
+      <div class="folder-item" id="folder-api">
+        <div class="folder-header" onclick="toggleFolder('folder-api')">
+          <svg class="folder-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 3 11 8 5 13"/></svg>
+          <svg class="folder-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4.5A1.5 1.5 0 013.5 3h2.672a1.5 1.5 0 011.06.44l.829.828A1.5 1.5 0 009.12 4.5H12.5A1.5 1.5 0 0114 6v6a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 12V4.5z"/></svg>
+          API
+        </div>
+        <div class="folder-children">
+          <div class="nav-coming-soon">Coming soon…</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="article-container">
+
+        <div class="article-tag">ML</div>
+        <div class="article-meta">
+          Ramakrushna Mohapatra <span class="sep">·</span> April 23, 2026 <span class="sep">·</span> 14 min read
+        </div>
+        <h1 class="article-title">Gradient Descent in Detail</h1>
+        <p class="article-intro">
+          Gradient descent is the engine behind nearly every machine learning model trained today. It answers
+          one question: given a function measuring how wrong our model is, which direction should we nudge the
+          parameters to make it less wrong? This note builds the intuition, derives the math, and walks through
+          every practical variant you'll encounter in the wild.
+        </p>
+
+        <div class="article-body">
+
+          <h2>The Core Intuition</h2>
+          <p>
+            Imagine you're blindfolded on a hilly landscape and you want to reach the lowest valley. You can't
+            see the whole landscape — you can only feel the slope under your feet. The strategy is simple:
+            <strong>always step in the direction that goes downhill</strong>. That's gradient descent.
+          </p>
+          <p>
+            In machine learning, the "landscape" is the <strong>loss surface</strong> — a high-dimensional
+            function mapping model parameters θ to a scalar error. The "slope" is the gradient ∇L(θ).
+          </p>
+
+          <!-- Diagram 1: Loss landscape -->
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 680 200" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <!-- Axis -->
+              <line x1="60" y1="170" x2="620" y2="170" stroke="#d6cfc3" stroke-width="1.5"/>
+              <line x1="60" y1="20"  x2="60"  y2="170" stroke="#d6cfc3" stroke-width="1.5"/>
+              <text x="340" y="192" text-anchor="middle" font-size="11" fill="#a09585">Parameter θ</text>
+              <text x="30" y="95" text-anchor="middle" font-size="11" fill="#a09585" transform="rotate(-90,30,95)">Loss L(θ)</text>
+
+              <!-- Loss curve (parabola-ish with a local min) -->
+              <path d="M80,155 C120,60 160,30 220,50 C270,68 290,120 330,130
+                        C370,140 400,80 450,45 C500,15 550,20 590,40 C610,50 625,80 630,110"
+                    fill="none" stroke="#4f46e5" stroke-width="2.5"/>
+
+              <!-- Global minimum marker -->
+              <circle cx="453" cy="44" r="5" fill="#16a34a"/>
+              <line x1="453" y1="44" x2="453" y2="170" stroke="#16a34a" stroke-width="1" stroke-dasharray="4"/>
+              <text x="453" y="185" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="600">global min</text>
+
+              <!-- Local minimum marker -->
+              <circle cx="223" cy="49" r="5" fill="#f59e0b"/>
+              <line x1="223" y1="49" x2="223" y2="170" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4"/>
+              <text x="223" y="185" text-anchor="middle" font-size="10" fill="#f59e0b" font-weight="600">local min</text>
+
+              <!-- Starting point and gradient arrows -->
+              <circle cx="560" cy="26" r="6" fill="#ef4444"/>
+              <text x="575" y="22" font-size="10" fill="#ef4444" font-weight="600">start</text>
+
+              <!-- Step arrows going downhill toward global min -->
+              <path d="M555,30 L520,24" stroke="#ef4444" stroke-width="1.8" marker-end="url(#arr-gd)"/>
+              <path d="M515,22 L490,20" stroke="#ef4444" stroke-width="1.8" marker-end="url(#arr-gd)"/>
+              <path d="M485,22 L462,30" stroke="#ef4444" stroke-width="1.8" marker-end="url(#arr-gd)"/>
+              <defs>
+                <marker id="arr-gd" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#ef4444"/>
+                </marker>
+              </defs>
+
+              <text x="340" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Loss Surface — stepping downhill toward the minimum</text>
+            </svg>
+            <div class="diagram-caption">Figure 1 — Gradient descent navigates the loss surface by following the negative gradient</div>
+          </div>
+
+          <h2>The Mathematics</h2>
+          <p>Given a loss function <em>L(θ)</em> and current parameters <em>θ</em>, the update rule is:</p>
+
+          <div style="background:#faf6ee;border:1px solid var(--border);border-radius:8px;padding:20px 28px;margin:20px 0;text-align:center;">
+            <span style="font-family:var(--font-mono);font-size:1.05rem;color:var(--text);letter-spacing:0.02em;">
+              θ &nbsp;←&nbsp; θ &nbsp;−&nbsp; α · ∇<sub>θ</sub>L(θ)
+            </span>
+            <div style="font-family:var(--font-sans);font-size:11.5px;color:var(--text-faint);margin-top:10px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+              <span><strong>θ</strong> = model parameters</span>
+              <span><strong>α</strong> = learning rate</span>
+              <span><strong>∇L(θ)</strong> = gradient of loss</span>
+            </div>
+          </div>
+
+          <p>
+            The gradient <em>∇L(θ)</em> is a vector of partial derivatives — one per parameter. It points in the
+            direction of <em>steepest ascent</em>. We subtract it (hence <em>negative</em> gradient) to go downhill.
+          </p>
+
+          <h3>A Worked Example</h3>
+          <p>Suppose our loss is simply <em>L(θ) = θ²</em>. The gradient is <em>dL/dθ = 2θ</em>. Starting at θ = 4 with α = 0.1:</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code>theta = <span class="tn">4.0</span>
+alpha = <span class="tn">0.1</span>
+
+<span class="tk">for</span> step <span class="tk">in</span> <span class="tf">range</span>(<span class="tn">10</span>):
+    loss     = theta ** <span class="tn">2</span>
+    gradient = <span class="tn">2</span> * theta          <span class="tc"># dL/dθ</span>
+    theta    = theta - alpha * gradient
+    <span class="tf">print</span>(<span class="ts">f"step {step+1:2d}: θ={theta:.4f}  L={theta**2:.4f}"</span>)
+
+<span class="tc"># step  1: θ=3.2000  L=10.2400</span>
+<span class="tc"># step  2: θ=2.5600  L=6.5536</span>
+<span class="tc"># ...converges toward θ=0 (minimum)</span></code></pre>
+          </div>
+
+          <h2>The Three Variants</h2>
+          <p>The key difference between variants is <em>how many samples</em> you use to estimate the gradient at each step.</p>
+
+          <!-- Diagram 2: Variants comparison -->
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 680 160" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <!-- Batch GD -->
+              <rect x="20" y="20" width="196" height="120" rx="10" fill="#fff" stroke="#e0d9cc" stroke-width="1.5"/>
+              <rect x="20" y="20" width="196" height="36" rx="10" fill="#4f46e5"/>
+              <rect x="20" y="44" width="196" height="12" fill="#4f46e5"/>
+              <text x="118" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Batch GD</text>
+              <text x="118" y="78" text-anchor="middle" font-size="11" fill="#2a2520">Uses <tspan font-weight="700">all N samples</tspan></text>
+              <text x="118" y="95" text-anchor="middle" font-size="11" fill="#2a2520">per update</text>
+              <text x="118" y="116" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="600">✓ Smooth convergence</text>
+              <text x="118" y="131" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">✗ Slow on large datasets</text>
+
+              <!-- SGD -->
+              <rect x="242" y="20" width="196" height="120" rx="10" fill="#fff" stroke="#e0d9cc" stroke-width="1.5"/>
+              <rect x="242" y="20" width="196" height="36" rx="10" fill="#f59e0b"/>
+              <rect x="242" y="44" width="196" height="12" fill="#f59e0b"/>
+              <text x="340" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Stochastic GD (SGD)</text>
+              <text x="340" y="78" text-anchor="middle" font-size="11" fill="#2a2520">Uses <tspan font-weight="700">1 sample</tspan></text>
+              <text x="340" y="95" text-anchor="middle" font-size="11" fill="#2a2520">per update</text>
+              <text x="340" y="116" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="600">✓ Fast updates</text>
+              <text x="340" y="131" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">✗ Noisy / erratic path</text>
+
+              <!-- Mini-batch -->
+              <rect x="464" y="20" width="196" height="120" rx="10" fill="#fff" stroke="#e0d9cc" stroke-width="1.5"/>
+              <rect x="464" y="20" width="196" height="36" rx="10" fill="#16a34a"/>
+              <rect x="464" y="44" width="196" height="12" fill="#16a34a"/>
+              <text x="562" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Mini-batch GD</text>
+              <text x="562" y="78" text-anchor="middle" font-size="11" fill="#2a2520">Uses <tspan font-weight="700">32–256 samples</tspan></text>
+              <text x="562" y="95" text-anchor="middle" font-size="11" fill="#2a2520">per update</text>
+              <text x="562" y="116" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="600">✓ Best of both worlds</text>
+              <text x="562" y="131" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="600">✓ GPU-parallelisable</text>
+            </svg>
+            <div class="diagram-caption">Figure 2 — The three gradient descent variants differ only in batch size. Mini-batch is the default in practice.</div>
+          </div>
+
+          <h2>The Learning Rate: Everything Depends On It</h2>
+          <p>
+            The learning rate α controls how big each step is. Too small and training takes forever; too large
+            and you overshoot the minimum and diverge.
+          </p>
+
+          <!-- Diagram 3: Learning rate effects -->
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 680 200" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans',sans-serif">
+              <!-- Shared axes helper: three mini charts -->
+
+              <!-- Too small -->
+              <text x="113" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#ef4444">α too small</text>
+              <line x1="30" y1="170" x2="200" y2="170" stroke="#d6cfc3" stroke-width="1"/>
+              <line x1="30" y1="30"  x2="30"  y2="170" stroke="#d6cfc3" stroke-width="1"/>
+              <text x="113" y="183" text-anchor="middle" font-size="9" fill="#a09585">steps →</text>
+              <text x="18" y="100" text-anchor="middle" font-size="9" fill="#a09585" transform="rotate(-90,18,100)">loss</text>
+              <path d="M35,155 C50,148 70,141 90,135 C110,129 130,123 150,118 C165,114 180,110 195,107"
+                    fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+              <text x="113" y="100" text-anchor="middle" font-size="10" fill="#ef4444">slow convergence</text>
+
+              <!-- Just right -->
+              <text x="340" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">α just right ✓</text>
+              <line x1="257" y1="170" x2="427" y2="170" stroke="#d6cfc3" stroke-width="1"/>
+              <line x1="257" y1="30"  x2="257" y2="170" stroke="#d6cfc3" stroke-width="1"/>
+              <path d="M262,155 C290,100 310,55 340,35 C360,22 390,20 422,20"
+                    fill="none" stroke="#16a34a" stroke-width="2"/>
+              <text x="340" y="100" text-anchor="middle" font-size="10" fill="#16a34a">fast, stable</text>
+
+              <!-- Too large -->
+              <text x="567" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#f59e0b">α too large</text>
+              <line x1="484" y1="170" x2="654" y2="170" stroke="#d6cfc3" stroke-width="1"/>
+              <line x1="484" y1="30"  x2="484" y2="170" stroke="#d6cfc3" stroke-width="1"/>
+              <!-- Oscillating / diverging path -->
+              <path d="M489,155 C500,40 510,160 525,30 C540,155 555,25 570,150 C580,50 595,140 610,45 C622,135 635,55 650,145"
+                    fill="none" stroke="#f59e0b" stroke-width="2"/>
+              <text x="567" y="100" text-anchor="middle" font-size="10" fill="#f59e0b">oscillates / diverges</text>
+            </svg>
+            <div class="diagram-caption">Figure 3 — Learning rate is the most important hyperparameter: too small wastes time, too large causes divergence</div>
+          </div>
+
+          <h2>Advanced Optimizers</h2>
+          <p>
+            Plain SGD suffers from slow convergence and sensitivity to the learning rate. Modern optimizers
+            fix this by adapting the step size for each parameter automatically.
+          </p>
+
+          <h3>Momentum</h3>
+          <p>Keeps a running average of past gradients (a "velocity"), so the update smooths out noisy oscillations and accelerates in consistent directions.</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tc"># Momentum SGD — manual implementation</span>
+velocity = <span class="tn">0</span>
+beta     = <span class="tn">0.9</span>   <span class="tc"># momentum coefficient</span>
+alpha    = <span class="tn">0.01</span>  <span class="tc"># learning rate</span>
+
+<span class="tk">for</span> grad <span class="tk">in</span> gradients:
+    velocity = beta * velocity + (<span class="tn">1</span> - beta) * grad
+    theta   -= alpha * velocity</code></pre>
+          </div>
+
+          <h3>Adam (Adaptive Moment Estimation)</h3>
+          <p>
+            Adam combines momentum (1st moment) with per-parameter learning rate scaling (2nd moment). It's the
+            default optimizer for almost every deep learning project.
+          </p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tc"># Adam — manual implementation</span>
+<span class="tk">import</span> numpy <span class="tk">as</span> np
+
+m, v = <span class="tn">0</span>, <span class="tn">0</span>          <span class="tc"># 1st & 2nd moment estimates</span>
+beta1, beta2 = <span class="tn">0.9</span>, <span class="tn">0.999</span>
+alpha, eps   = <span class="tn">1e-3</span>, <span class="tn">1e-8</span>
+
+<span class="tk">for</span> t, grad <span class="tk">in</span> <span class="tf">enumerate</span>(gradients, <span class="tn">1</span>):
+    m = beta1 * m + (<span class="tn">1</span> - beta1) * grad           <span class="tc"># biased 1st moment</span>
+    v = beta2 * v + (<span class="tn">1</span> - beta2) * grad ** <span class="tn">2</span>       <span class="tc"># biased 2nd moment</span>
+    m_hat = m / (<span class="tn">1</span> - beta1 ** t)                   <span class="tc"># bias-corrected</span>
+    v_hat = v / (<span class="tn">1</span> - beta2 ** t)
+    theta -= alpha * m_hat / (np.sqrt(v_hat) + eps)</code></pre>
+          </div>
+
+          <table>
+            <thead><tr><th>Optimizer</th><th>Adaptive LR</th><th>Momentum</th><th>Best for</th></tr></thead>
+            <tbody>
+              <tr><td><strong>SGD</strong></td><td>No</td><td>Optional</td><td>Computer vision (with tuning)</td></tr>
+              <tr><td><strong>SGD + Momentum</strong></td><td>No</td><td>Yes</td><td>Smoother convergence</td></tr>
+              <tr><td><strong>RMSProp</strong></td><td>Yes</td><td>No</td><td>RNNs, non-stationary problems</td></tr>
+              <tr><td><strong>Adam</strong></td><td>Yes</td><td>Yes</td><td>General default, NLP, vision</td></tr>
+              <tr><td><strong>AdamW</strong></td><td>Yes</td><td>Yes</td><td>Transformers (weight decay fix)</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Full Training Loop in PyTorch</h2>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code><span class="tk">import</span> torch, torch.nn <span class="tk">as</span> nn
+<span class="tk">from</span> torch.utils.data <span class="tk">import</span> DataLoader, TensorDataset
+
+<span class="tc"># Toy dataset</span>
+X = torch.randn(<span class="tn">1000</span>, <span class="tn">10</span>)
+y = torch.randn(<span class="tn">1000</span>, <span class="tn">1</span>)
+loader = DataLoader(TensorDataset(X, y), batch_size=<span class="tn">32</span>, shuffle=<span class="tcl">True</span>)
+
+<span class="tc"># Model + optimizer</span>
+model = nn.Sequential(nn.Linear(<span class="tn">10</span>, <span class="tn">64</span>), nn.ReLU(), nn.Linear(<span class="tn">64</span>, <span class="tn">1</span>))
+opt   = torch.optim.Adam(model.parameters(), lr=<span class="tn">1e-3</span>, weight_decay=<span class="tn">1e-4</span>)
+loss_fn = nn.MSELoss()
+
+<span class="tk">for</span> epoch <span class="tk">in</span> <span class="tf">range</span>(<span class="tn">20</span>):
+    epoch_loss = <span class="tn">0</span>
+    <span class="tk">for</span> xb, yb <span class="tk">in</span> loader:
+        pred = model(xb)            <span class="tc"># forward pass</span>
+        loss = loss_fn(pred, yb)    <span class="tc"># compute loss</span>
+        opt.zero_grad()             <span class="tc"># clear old gradients</span>
+        loss.backward()             <span class="tc"># backprop → compute ∇L</span>
+        opt.step()                  <span class="tc"># θ ← θ − α∇L</span>
+        epoch_loss += loss.item()
+    <span class="tf">print</span>(<span class="ts">f"Epoch {epoch+1:2d} | loss {epoch_loss/len(loader):.4f}"</span>)</code></pre>
+          </div>
+
+          <h2>Learning Rate Schedules</h2>
+          <p>A fixed learning rate is rarely optimal. Schedules decay it over time so early training makes large, exploratory steps and later training makes fine, precise ones.</p>
+
+          <div class="code-block">
+            <div class="code-block-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><code"><span class="tc"># Cosine annealing — smoothly decays to a minimum LR</span>
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+    opt, T_max=<span class="tn">20</span>, eta_min=<span class="tn">1e-6</span>
+)
+
+<span class="tk">for</span> epoch <span class="tk">in</span> <span class="tf">range</span>(<span class="tn">20</span>):
+    train_one_epoch(model, loader, opt, loss_fn)
+    scheduler.step()
+    <span class="tf">print</span>(<span class="ts">f"LR: {scheduler.get_last_lr()[0]:.2e}"</span>)</code></pre>
+          </div>
+
+          <h2>Common Pitfalls</h2>
+          <ul>
+            <li><strong>Vanishing gradients</strong> — in deep networks, gradients shrink to near-zero in early layers. Fix: use ReLU activations, batch normalisation, residual connections.</li>
+            <li><strong>Exploding gradients</strong> — gradients grow unboundedly. Fix: gradient clipping (<code>torch.nn.utils.clip_grad_norm_</code>).</li>
+            <li><strong>Stuck in local minima</strong> — less of a problem in high-dimensional spaces than people think; saddle points are more common. Fix: SGD noise helps escape.</li>
+            <li><strong>Not zero-ing gradients</strong> — PyTorch accumulates gradients by default. Always call <code>optimizer.zero_grad()</code> before <code>loss.backward()</code>.</li>
+            <li><strong>Learning rate too high at start</strong> — use learning rate warmup for transformers and large models.</li>
+          </ul>
+
+          <div class="callout tip">
+            <span class="callout-label">Rule of thumb</span>
+            <p>Start with Adam at lr=1e-3. If it diverges, try 1e-4. If it's too slow, try 3e-3. Use a cosine schedule for fine-tuning.</p>
+          </div>
+
+          <h2>Resources to Read More</h2>
+          <div class="resources-grid">
+            <a class="resource-card" href="https://www.deeplearning.ai/ai-notes/optimization/" target="_blank" rel="noopener">
+              <div class="resource-card-type">Article</div>
+              <div class="resource-card-title">DeepLearning.AI — Optimization Notes</div>
+              <div class="resource-card-desc">Visual, interactive explainer of gradient descent and its variants.</div>
+            </a>
+            <a class="resource-card" href="https://arxiv.org/abs/1412.6980" target="_blank" rel="noopener">
+              <div class="resource-card-type">Paper</div>
+              <div class="resource-card-title">Adam: A Method for Stochastic Optimization</div>
+              <div class="resource-card-desc">The original Kingma &amp; Ba paper introducing the Adam optimizer.</div>
+            </a>
+            <a class="resource-card" href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">
+              <div class="resource-card-type">Docs</div>
+              <div class="resource-card-title">PyTorch Optimizer Docs</div>
+              <div class="resource-card-desc">All built-in optimizers and scheduler APIs with examples.</div>
+            </a>
+            <a class="resource-card" href="https://cs231n.github.io/neural-networks-3/" target="_blank" rel="noopener">
+              <div class="resource-card-type">Course notes</div>
+              <div class="resource-card-title">CS231n — Training Neural Nets</div>
+              <div class="resource-card-desc">Stanford's canonical notes on gradient descent, learning rates and regularisation.</div>
+            </a>
+          </div>
+
+          <hr>
+          <p style="color:var(--text-faint);font-family:var(--font-sans);font-size:0.875rem;">
+            Written by Ramakrushna Mohapatra · April 23, 2026 ·
+            Found a mistake? <a href="mailto:itsramakrushna@gmail.com">Email me</a>
+          </p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <span>RK Notes · Ramakrushna Mohapatra</span>
+        <span><a href="mailto:itsramakrushna@gmail.com">Contact</a> · <a href="index.html">← All notes</a></span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    function toggleFolder(id) { document.getElementById(id).classList.toggle('open'); }
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = 'Copied!'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
